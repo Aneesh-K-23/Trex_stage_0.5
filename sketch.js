@@ -17,13 +17,20 @@ function setup(){
   //adding scale and position to trex
   trex.scale = 0.5;
   trex.x = 50
+  
+  ground = createSprite(200,180,400,20);
 }
 
 
 function draw(){
   //set background color 
-  background("white");
+  background("white");  
+  ground.velocityX=-2;
+  console.log(ground.x);
   
+  if (ground.x<0){
+    ground.x=ground.width/2;
+  }
   //logging the y position of the trex
   console.log(trex.y)
   
@@ -33,7 +40,7 @@ function draw(){
   }
   
   trex.velocityY = trex.velocityY + 0.5;
-  
+  trex.collide(ground)
   //stop trex from falling down
   trex.collide(edges[3])
   drawSprites();
